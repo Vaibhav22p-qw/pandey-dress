@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Payment Gateway</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      gap: 20px;
+    }
+    .tab {
+      padding: 10px 20px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    .tab.active {
+      font-weight: bold;
+      border-bottom: none;
+    }
+    .tab-content {
+      border: 1px solid black;
+      padding: 20px;
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    input {
+      display: block;
+      margin: 10px 0;
+      padding: 6px;
+      width: 100%;
+      max-width: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Payment Gateway</h2>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab(0)">Pay with QR</div>
+    <div class="tab" onclick="showTab(1)">Pay with UPI ID</div>
+    <div class="tab" onclick="showTab(2)">Pay with Card</div>
+  </div>
+
+  <div class="tab-content active">
+    <p>Scan the QR code using your UPI app.</p>
+    <div style="width:200px; height:200px; border:1px solid black;"></div>
+  </div>
+
+  <div class="tab-content">
+    <label for="upi">Enter UPI ID:</label>
+    <input type="text" id="upi" placeholder="example@bank">
+    <button>Pay Now</button>
+  </div>
+
+  <div class="tab-content">
+    <label for="card">Card Number:</label>
+    <input type="text" id="card" placeholder="1234 5678 9012 3456">
+    
+    <label for="expiry">Expiry Date:</label>
+    <input type="text" id="expiry" placeholder="MM/YY">
+    
+    <label for="cvv">CVV:</label>
+    <input type="password" id="cvv" placeholder="123">
+    
+    <button>Pay Now</button>
+  </div>
+
+  <script>
+    function showTab(index) {
+      const tabs = document.querySelectorAll('.tab');
+      const contents = document.querySelectorAll('.tab-content');
+      tabs.forEach((t, i) => {
+        t.classList.toggle('active', i === index);
+        contents[i].classList.toggle('active', i === index);
+      });
+    }
+  </script>
+
+</body>
+</html>
